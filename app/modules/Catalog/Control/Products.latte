@@ -1,0 +1,19 @@
+<div class="products">
+	<div class="row">
+		<div n:foreach="$products as $product" class="{$cols}">
+			<div class="product-box">
+				{var $imgLink = $product->image ? $userUrl . '/products/thumb/' . $product->image . '?' . $ts : $pubUrl .'/img/no-image.jpg' }
+				<a class="image d-flex" href="{plink :Catalog:Product:detail, product => $product}" style="background-image: url('{$imgLink|noescape}');"></a>
+				<div class="name">
+					<a href="{plink :Catalog:Product:detail, product => $product}">{$product->name}</a>
+				</div>
+				<div class="description">{$product->perex|striptags|noescape}</div>
+			</div>
+		</div>
+	</div>
+</div>
+{*{if $empty}*}
+{*	<br><br>*}
+{*	V kategorii se nenachází žádné produkty*}
+{*	<br><br>*}
+{*{/if}*}

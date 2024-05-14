@@ -1,0 +1,118 @@
+{block head}
+    {include '_head.latte'}
+{/block}
+{block main}
+    {control breadcrumb, $page}
+    <h1 class="icon">{_registerProduct.Head}</h1>
+
+    <div class="row">
+        <div class="col-4 mb-4">
+            {foreach $flashes as $message}
+                <div class="alert alert--{$message->type}">{$message->message}</div>
+            {/foreach}
+            {form registerProductForm}
+                <h4>Informace o vás</h4>
+                <div class="form-group">
+                    {label fullName /}
+                    {input fullName, class=>'form-control mt-2 border-blue'}
+                </div>
+                <div class="form-group">
+                    {label email /}
+                    {input email, class=>'form-control mt-2 border-blue'}
+                </div>
+                <div class="form-group">
+                    {label company /}
+                    {input company, class=>'form-control mt-2 border-blue'}
+                </div>
+                <div class="form-group">
+                    {label specialization /}
+                    {input specialization, class=>'form-control mt-2 border-blue'}
+                </div>
+
+                <h4>Informace o nákupu</h4>
+                <div class="form-group">
+                    {label product /}
+                    {input product, class=>'form-control mt-2 product-search'}
+                </div>
+                <div class="form-group">
+                    {label serialNumber /}<a href="{$pubUrl}/img/serial_number.png" data-lightbox="SN" class="ml-2"><i class="fa fa-info-circle"></i></a>
+                    {input serialNumber, class=>'form-control mt-2 border-blue'}
+                </div>
+                <div class="form-group">
+                    {label seller /}
+                    {input seller, class=>'form-control mt-2 border-blue'}
+                </div>
+                <div class="form-group">
+                    {label orderTs /}
+                    {input orderTs, class=>'form-control mt-2 border-blue'}
+                </div>
+                <div class="form-group">
+                    {input submit, class=>'button big mt-2'}
+                </div>
+            {/form}
+        </div>
+    </div>
+
+    <style>
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #495057;
+            font-weight: 400;
+            line-height: 34px;
+        }
+        .select2-container .select2-selection--single {
+            height: 34px;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #009fdf;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            display: none;
+            height: 33px;
+            right: 14px;
+            color: black;
+        }
+
+        .border-blue {
+            border-color: #009fdf;
+        }
+    </style>
+{/block}
+
+{block scripts}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/cs.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#frm-registerProductForm-product').select2({
+                {*language: {$lang === 'cz' ? 'cs' : 'en'},*}
+                language: {
+                    inputTooShort: function () {
+                        return 'Vyhledat podle názvu, kódu nebo EAN';
+                    }
+                },
+                minimumInputLength: 2,
+                // placeholder: "Vyhledat produkt",
+                ajax: {
+                    url: {plink searchProducts!},
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                            offset: params.page
+                        };
+                    }
+                }
+            });
+        });
+    </script>
+{/block}
+
+
+
+
+
+
+
+

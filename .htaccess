@@ -1,0 +1,36 @@
+# disable directory listing
+Options -Indexes
+
+# enable cool URL
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+#    presmerovani vsech aliasu na pozadovanou domenu
+    RewriteCond %{HTTP_HOST} ^(www\.)?alias\.cz [NC]
+    RewriteRule ^(.*)$ https://www.domena.cz/$1 [R=301,QSA,L]
+
+#    zapnuti https protokolu
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} !^localhost
+    RewriteCond %{HTTP_HOST} !masterinter\.net$
+    RewriteCond %{HTTP_HOST} !vas-server\.cz$
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+#    doplneni www
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteCond %{HTTP_HOST} !^localhost
+    RewriteCond %{HTTP_HOST} !masterinter\.net$
+    RewriteCond %{HTTP_HOST} !vas-server\.cz$
+    RewriteRule (.*) https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+#    prevents files starting with dot to be viewed by browser
+    RewriteRule /\.|^\. - [F]
+
+   # front controller
+   RewriteRule !\.(eot|woff|woff2|ttf|php|pdf|js|xls|doc|xlsx|docx|ico|gif|jpg|jpeg|png|svg|css|rar|zip|tar\.gz)$ index.php [L]
+</IfModule>
+
+# enable gzip compression
+<IfModule mod_deflate.c>
+   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/json
+</IfModule>

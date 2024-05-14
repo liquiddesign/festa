@@ -1,0 +1,87 @@
+@import "admin-colors";
+@import "admin-functions";
+@import "admin-mixins";
+@import "admin-buttons";
+
+body,
+html {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $font-color;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: calc((2.5 * 14px) - ((#{$i - 1}px * 4)));
+    margin: .75em 0 .5em;
+  }
+}
+
+a {
+  color: $color-link;
+
+  &:hover {
+    color: darken($color-link, 20);
+  }
+}
+
+p {
+  margin: 1.5em 0;
+
+  &.perex {
+    font-size: 1.5em;
+    font-weight: 300;
+  }
+}
+
+i {
+  margin: 0 .25em 0 0;
+
+  &.mce-i-awesome {
+    font-family: 'Font Awesome\ 5 Free' !important;
+  }
+}
+
+strong {
+  font-weight: 500;
+}
+
+textarea {
+  resize: both !important;
+}
+
+footer {
+  color: white;
+  background-color: #000;
+  padding: 1em 0;
+
+  a {
+    color: gold;
+
+    &:hover {
+      color: goldenrod;
+    }
+  }
+}
+
+.btn {
+  white-space: nowrap;
+}
+
+.datepicker > div {
+  display: block;
+}
+
+.form-control {
+  &.datepicker {
+    &[readonly] {
+      background-color: #fff;
+    }
+  }
+}
+
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}

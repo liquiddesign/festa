@@ -1,0 +1,14 @@
+# exclude everything
+.idea/*
+userfiles/*
+temp/**
+app/config/config.local.neon
+
+# except
+!userfiles/.gitkeep
+!temp/.gitkeep
+!temp/log
+!temp/log/.gitkeep
+!temp/sessions
+!temp/sessions/.gitkeep
+

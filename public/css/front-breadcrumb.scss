@@ -1,0 +1,47 @@
+@import "front-colors";
+@import "front-mixins";
+
+.breadcrumb {
+  @include display-flex;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  list-style: none;
+  margin-bottom: 3rem;
+  font-weight: 400;
+
+  li:first-child {
+    &::before {
+      background-image: url("../img/home.png");
+      background-repeat: no-repeat;
+      background-size: 15px 15px;
+      content: ' ';
+      padding: 0 15px;
+      //position: relative;
+      //bottom: -3px;
+      //left: 0;
+    }
+  }
+  li:last-child {
+    color: $color-red;
+  }
+}
+
+.breadcrumb-item {
+
+  text-decoration: none;
+
+  &.active {
+    color: $color-red;
+  }
+
+  &+.breadcrumb-item {
+    padding-left: .5rem;
+
+    &::before {
+      content: '>';
+      display: inline-block;
+      padding: 0 0.4rem;
+      color: $color-main;
+    }
+  }
+}

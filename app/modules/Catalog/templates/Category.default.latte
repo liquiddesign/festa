@@ -1,0 +1,34 @@
+{block head}
+    {include '_head.latte'}
+{/block}
+{block main}
+    {control breadcrumb, $page}
+    <h1 class="icon">Produkty</h1>
+    <div class="products-categories">
+        {foreach $categories as $category}
+            <div class="category">
+                <div class="name-image-wrapper">
+                    <div class="image-wrapper">
+                        <a n:href=":Catalog:Category:detail, $category"><img src="{$userUrl}/categories/{$category->image}" alt="{$category->name}" title="{$category->name}"></a>
+                    </div>
+                    <div>
+                        <a n:href=":Catalog:Category:detail, $category" class="name">{$category->name}</a>
+                    </div>
+                </div>
+                <div class="divider">
+                    <img src="{$pubUrl}/img/ikonka.png" width="12"><hr>
+                </div>
+                <div n:foreach="$category->getDirectChilds()->where('hidden = 0') as $categoryChild" class="subcategory">
+                    <a n:href=":Catalog:Category:detail, $categoryChild" class="subcategory-name">{$categoryChild->name}</a>
+                </div>
+                <div class="show-products"><a n:href=":Catalog:Category:detail, $category" class="button">Prohlédnout produkty</a></div>
+            </div>
+        {/foreach}
+    </div>
+{/block}
+
+
+
+
+
+

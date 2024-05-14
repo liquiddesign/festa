@@ -1,0 +1,136 @@
+@import "front-colors";
+@import "front-mixins";
+
+.owl-dots {
+  display: none;
+}
+
+.owl-theme .owl-nav [class*=owl-] {
+  &:hover {
+    background: none;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.main-slider {
+  color: $color-white;
+  font-size: 63px;
+  text-transform: uppercase;
+  margin-bottom: 43px;
+
+  .main-image {
+    height: 450px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: $color-main;
+    background-position: center;
+  }
+
+  .line-box p {
+    margin: .5em 0;
+    line-height: 1.1;
+  }
+  //
+  //.owl-dots {
+  //  display: none;
+  //}
+
+  .owl-prev {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    left: 70px;
+    margin-left: -20px;
+    display: block !important;
+
+    img {
+      width: 40px;
+    }
+  }
+
+  .owl-next {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    right: 130px;
+    display: block !important;
+
+    img {
+      width: 40px;
+    }
+  }
+  //.owl-prev i, .owl-next i {transform : scale(1,6); color: #ccc;}
+}
+.slider-wrapper {
+  width: 80%;
+  margin: auto;
+}
+#owl-carousel-products {
+  .owl-prev {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 35%;
+    left: -100px;
+    display: block !important;
+
+    img {
+      width: 40px;
+
+    }
+  }
+
+  .owl-next {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 35%;
+    right: -60px;
+    display: block !important;
+
+    img {
+      width: 40px;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  #main-slider {
+    font-size: 40px;
+    margin-bottom: 0;
+
+    .main-image {
+      //background-size: 150%;
+      //background-position: top center;
+      background-repeat: no-repeat;
+      height: 320px;
+    }
+
+    .owl-prev {
+      left: 15px;
+    }
+
+    .owl-next {
+      right: 50px;
+    }
+  }
+
+  .slider-wrapper {
+    width: 60%;
+    margin: auto;
+  }
+
+  #owl-carousel-products {
+    .owl-prev {
+      left: -80px;
+    }
+
+    .owl-next {
+      right: -40px;
+    }
+  }
+}

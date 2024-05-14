@@ -1,0 +1,12 @@
+@mixin display-flex($display : flex) {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: $display !important;
+}
+
+@mixin box-shadow-image() {
+  -webkit-box-shadow: 0 5px 15px 0 #e2e2e2;
+  -moz-box-shadow: 0 5px 15px 0 #e2e2e2;
+  box-shadow: 0 5px 15px 0 #e2e2e2;
+}

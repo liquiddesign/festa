@@ -1,0 +1,16 @@
+{block head}
+    {include '_head.latte'}
+{/block}
+{block main}
+    {control breadcrumb}
+
+    <h1 class="icon">{$presenter->pages->getPage()->getTitle()}</h1>
+    {control products:paging true}
+    {control products, 'col-md-3 col-sm-6 col-xs-6'}
+    {control products:paging true}
+{/block}
+
+
+
+
+

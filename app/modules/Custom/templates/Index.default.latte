@@ -1,0 +1,247 @@
+<html>
+{include '../../@head.latte'}
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VXJMMGR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header id="menu">
+                {control menu}
+            </header>
+        </div>
+    </div>
+</div>
+
+<div class="slider">
+    {control slider, 'i9o'}
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="hp-slogan center">
+                <div><img src="{$pubUrl}/img/ikonka.png" width="23"></div>
+                <h1><span class="color-red">{_uvod.Profesionalni}</span> {_uvod.naradi}<br>{_uvod.proVasUspech}</h1>
+            </div>
+            <div class="products-categories">
+                {foreach $categories as $category}
+                    <div class="category">
+                        <div class="name-image-wrapper">
+                            <div class="image-wrapper">
+                                <a n:href=":Catalog:Category:detail, lang => $lang, $category"><img src="{$userUrl}/categories/{$category->image}" alt="{$category->name}" title="{$category->name}"></a>
+                            </div>
+                            <div>
+                                <a n:href=":Catalog:Category:detail, lang => $lang, $category" class="name">{$category->name}</a>
+                            </div>
+                        </div>
+                        <div class="divider">
+                            <img src="{$pubUrl}/img/ikonka.png" width="12"><hr>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="center">
+                <div><img src="{$pubUrl}/img/ikonka.png" width="25"></div>
+                <h2>{_'uvod.novinkyFesta'}</h2>
+            </div>
+            <br>
+            <div class="slider-wrapper">
+                <div id="owl-carousel-products" class="owl-carousel owl-theme">
+                    <div n:foreach="$newProducts as $newProduct" class="item">
+                        <div class="product-box">
+                            {var imgLink = $newProduct->image ? $userUrl . '/products/thumb/' . $newProduct->image : $pubUrl .'/img/no-image.jpg'}
+                            <a class="image d-flex" href="{plink :Catalog:Product:detail, lang => $lang, $newProduct}" style="background-image: url('{$imgLink|noescape}');"></a>
+                            <div class="name">
+                                <a n:href=":Catalog:Product:detail, lang => $lang, $newProduct">{$newProduct->name}</a>
+                            </div>
+                            <div class="description">{$newProduct->perex|striptags|noescape}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hp-videos">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="center">
+                    <div><img src="{$pubUrl}/img/ikonka.png" width="25"></div>
+                    <h2>NÁŘADÍ FESTA V LIBOVKÁCH PEPY LIBICKÉHO</h2>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-6" n:foreach="$videos as $key => $video">
+                        <div class="video">
+                            <a href="{$video['url']}" data-lity>
+                                <img src="{$pubUrl}/img/libovky/libovky-{$key}.png?{$ts}" alt="{$video['desc']}" width="100%"/>
+                                <i class="far fa-play-circle"></i>
+                            </a>
+                        </div>
+                        <div class="description">{$video['desc']}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hp-festa-industry">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="{$pubUrl}/img/industry-kotouce2.png" alt="festa industry" class="industry-left"/>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text">
+                            <div class="logo-industry">
+                                <div><img src="{$pubUrl}/img/festa-logo.png" /></div>
+                                <div class="logo-text">Industry</div>
+                                {$textBoxes['festa_industry']->text|noescape}
+                                <div class="collapse" id="more-text">
+                                    {$textBoxes['festa_industry_more']->text|noescape}
+                                </div>
+                            </div>
+                            <a n:href=":Catalog:Category:industry, lang => $lang" class="button big" data-toggle="collapse" data-target="#more-text" aria-expanded="false" aria-controls="more-text" onclick="$(this).hide()">{_'uvod.cistVice'}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer">
+                    <div class="logo">
+                        <a href="{plink :Custom:Index:default, lang => $presenter->lang}"><img src="{$pubUrl}/img/festa-logo.png" alt="festa logo" width="180" /></a>
+                    </div>
+                    <img class="icon" src="{$pubUrl}/img/ikonka.png" width="13">
+
+                    <div class="menu-part">
+                        {control menu:foot}
+                        <div class="copy"><small>Copyright &copy; {date('Y')} FESTA Všechna práva vyhrazena.</small></div>
+                    </div>
+
+                    <div class="social">
+                        <a href="https://www.facebook.com/FESTA-TOOLS-103234298256437" target="_blank" rel="noopener"><img src="{$pubUrl}/icons/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/festatools/" target="_blank" rel="noopener"><img src="{$pubUrl}/icons/instagram.png" alt="Instagram"></a>
+{*                        <a n:if="!empty($presenter->template->settings->twitter_link)" href="{$presenter->template->settings->twitter_link}"><i class="fab fa-twitter"></i></a>*}
+{*                        <a n:if="!empty($presenter->template->settings->facebook_link)"href="{$presenter->template->settings->facebook_link}"><i class="fab fa-facebook-f"></i></a>*}
+{*                        <a n:if="!empty($presenter->template->settings->youtube_link)"href="{$presenter->template->settings->youtube_link}"><i class="fab fa-youtube"></i></a>*}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{include '../../@scripts.latte'}
+
+{*{if $presenter->isLinkCurrent(':Custom:Index:default')}*}
+{*    <div id="mistri-modal" class="mistri-modal">*}
+{*        <div id="mistri-close" class="close"><a href="#">Zavřít &times;</a></div>*}
+{*        <div><img src="{$pubUrl}/img/mistri_dilny.jpg"/></div>*}
+{*    </div>*}
+
+{*    <div class="modal-overlay" id="modal-overlay"></div>*}
+
+{*    <style>*}
+{*        .mistri-modal {*}
+{*            display: none;*}
+{*            position: fixed; /* Stay in place */*}
+{*            z-index: 1010; /* Sit on top */*}
+{*            top: 50%;*}
+{*            left: 50%;*}
+{*            transform: translate(-50%, -50%);*}
+{*        }*}
+
+{*        .mistri-modal img {*}
+{*            max-width:100%;*}
+{*            max-height:100%;*}
+{*            width:auto;*}
+{*            height:auto;*}
+{*        }*}
+
+{*        .mistri-modal .close {*}
+{*            background-color: #0c0c0c;*}
+{*            color: #fff;*}
+{*            float: right;*}
+{*            padding: 5px;*}
+{*            font-size: 18px;*}
+{*            font-weight: bold;*}
+{*        }*}
+
+{*        .mistri-modal .close a {*}
+{*            color: #fff;*}
+{*            text-decoration: none;*}
+{*        }*}
+
+{*        .modal-overlay {*}
+{*            display: none;*}
+{*            z-index: 1000;*}
+{*            position: fixed;*}
+{*            top: 0;*}
+{*            left: 0;*}
+{*            width: 100%;*}
+{*            height: 100%;*}
+{*            background-color: rgba(0, 0, 0, 0.8);*}
+{*        }*}
+{*    </style>*}
+{*{/if}*}
+
+<script>
+    function setCookie(key, value, expiry) {
+        var expires = new Date();
+        expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+    }
+
+    function getCookie(key) {
+        var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+        return keyValue ? keyValue[2] : null;
+    }
+
+    function eraseCookie(key) {
+        var keyValue = getCookie(key);
+        setCookie(key, keyValue, '-1');
+    }
+
+    // if (getCookie('mistri') !== '1') {
+    //     $('#mistri-modal').show();
+    //     $('#modal-overlay').show();
+    // }
+    //
+    // $('#mistri-modal a').on('click', function (e) {
+    //     setCookie('mistri', '1', '1')
+    //     e.preventDefault();
+    //
+    //     $('#mistri-modal').hide();
+    //     $('#modal-overlay').hide();
+    // })
+</script>
+
+</body>
+</html>
+

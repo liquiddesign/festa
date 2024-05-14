@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+{include '@head.latte'}
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VXJMMGR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- HEADER -->
+<header id="menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {control menu}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- CONTENT -->
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {block main}{/block}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer">
+                    <div class="logo">
+                        <a href="{plink :Custom:Index:default, lang => $presenter->lang}"><img src="{$pubUrl}/img/festa-logo.png" alt="festa logo" width="180" /></a>
+                    </div>
+                    <img class="icon" src="{$pubUrl}/img/ikonka.png" width="13">
+
+                    <div class="menu-part">
+                        {control menu:foot}
+                        <div class="copy"><small>Copyright &copy; {date('Y')} FESTA Všechna práva vyhrazena.</small></div>
+                    </div>
+
+                    <div class="social">
+                        <a href="https://www.facebook.com/FESTA-TOOLS-103234298256437" target="_blank" rel="noopener"><img src="{$pubUrl}/icons/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/festatools/" target="_blank" rel="noopener"><img src="{$pubUrl}/icons/instagram.png" alt="Instagram"></a>
+{*                        <a n:if="!empty($presenter->template->settings->twitter_link)" href="{$presenter->template->settings->twitter_link}"><i class="fab fa-twitter"></i></a>*}
+{*                        <a n:if="!empty($presenter->template->settings->facebook_link)"href="{$presenter->template->settings->facebook_link}"><i class="fab fa-facebook-f"></i></a>*}
+{*                        <a n:if="!empty($presenter->template->settings->youtube_link)"href="{$presenter->template->settings->youtube_link}"><i class="fab fa-youtube"></i></a>*}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+{include '@scripts.latte'}
+{block scripts}{/block}
+</body>
+</html>

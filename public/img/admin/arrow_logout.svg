@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12.707" height="11.471" viewBox="0 0 12.707 11.471">
+  <g id="arrow_logout" transform="translate(-1808.5 -54.793)">
+    <line id="Line_1" data-name="Line 1" x2="12" transform="translate(1808.5 60.5)" fill="none" stroke="#deba57" stroke-width="1"/>
+    <line id="Line_2" data-name="Line 2" x2="5.028" y2="5.028" transform="translate(1815.472 55.5)" fill="none" stroke="#deba57" stroke-linecap="square" stroke-width="1"/>
+    <line id="Line_3" data-name="Line 3" y1="5.028" x2="5.028" transform="translate(1815.472 60.528)" fill="none" stroke="#deba57" stroke-linecap="square" stroke-width="1"/>
+  </g>
+</svg>

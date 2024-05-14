@@ -1,0 +1,15 @@
+parameters:
+    langs:
+        - cz
+        - en
+
+modules:
+    - admin
+    - web
+    - area
+#    - eshop
+
+admin:
+    menu:
+        'Katalog':
+            plink: ':Catalog:Admin:Catalog:products'

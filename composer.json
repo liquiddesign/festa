@@ -1,0 +1,120 @@
+{
+  "name": "liquiddesign/festa",
+  "description": "Defaultweb3 is core for Liquid Design s.r.o.",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1.0",
+    "ext-pdo": "*",
+    "nette/nette":"~2.4.0",
+    "lqdlib/security": "@dev",
+    "lqdlib/pages": "@dev",
+    "lqdlib/cms": "@dev",
+    "lqdlib/storm": "@dev",
+    "lqdlib/admin": "@dev",
+    "lqdlib/translator": "@dev",
+    "lqdlib/modules": "@dev",
+    "lqdlib/email": "@dev",
+    "lqdlib/web": "@dev",
+    "lqdlib/eshop": "@dev",
+    "lqdlib/common": "@dev",
+    "lqdlib/userfiles": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Tools\\": "app/Tools",
+      "App\\": "app/modules"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/security.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/pages.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/cms.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/storm.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/admin.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/translator.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/modules.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/email.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/web.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/eshop.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/common.git"
+    },
+    {
+      "type": "vcs",
+      "url":  "git@gitlab.com:lqdlib/userfiles.git"
+    }
+  ],
+  "scripts": {
+    "post-create-project-cmd": [
+      "@installer",
+      "npm install --prefix ./public ./public"
+    ],
+    "post-install-cmd": [
+      "@installer",
+      "npm install --prefix ./public ./public"
+    ],
+    "maintenance": [
+      "App\\Tools\\Scripts\\Maintenance::fire"
+    ],
+    "phpinfo": [
+      "App\\Tools\\Scripts\\Phpinfo::fire"
+    ],
+    "clear-nette-cache": [
+      "App\\Tools\\Scripts\\ClearCache::fire"
+    ],
+    "sync-database": [
+      "App\\Tools\\Scripts\\SyncDatabase::fire"
+    ],
+    "dump-database": [
+      "App\\Tools\\Scripts\\DumpDatabase::fire"
+    ],
+    "backup-database": [
+      "App\\Tools\\Scripts\\BackupDatabase::fire"
+    ],
+    "import-database": [
+      "App\\Tools\\Scripts\\ImportDatabase::fire"
+    ],
+    "sync-data": [
+      "App\\Tools\\Scripts\\SyncData::fire"
+    ],
+    "installer": [
+      "App\\Tools\\Scripts\\Installer::fire"
+    ]
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*",
+    "slevomat/coding-standard": "~4.0",
+    "composer/composer": "*"
+  }
+}

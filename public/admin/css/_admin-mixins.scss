@@ -1,0 +1,19 @@
+@import "admin-variables";
+
+@mixin display-flex {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin gradient($from: 135deg, $color: white, $color2: black) {
+  background: linear-gradient(#{$from}, #{$color}, #{$color2});
+}
+
+@mixin border-rounded($border-radius: .25rem) {
+  -webkit-border-radius: $border-radius !important;
+  -moz-border-radius: $border-radius !important;
+  border-radius: $border-radius !important;
+}

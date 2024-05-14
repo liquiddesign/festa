@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAWA,SAAU;EACR,KAAK,EAHK,OAAO;;AAMnB,OAAQ;EACN,gBAAgB,EAPN,OAAO;;ACPnB,UAAW;EACT,eAAe,EAAE,QAAQ;EACzB,cAAc,EAAE,CAAC;EACjB,MAAM,EAAE,cAAuB",
+"sources": ["_admin-colors.scss","lqd-table.scss"],
+"names": [],
+"file": "lqd-table.css"
+}

@@ -1,0 +1,48 @@
+{block head}
+
+    {include '_head.latte'}
+{/block}
+{block main}
+    {control breadcrumb}
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="category-menu">
+                <div n:foreach="$categories as $categoryItem" class="category">
+                    <div class="category-acordion{if $categoryItem->uuid == $category->uuid} active{/if}">
+                        <a n:href=":Catalog:Category:detail, $categoryItem" class="name level-{$categoryItem->getLevel()}">{$categoryItem->name}</a>
+                        <a n:if="$categoryItem->getDirectChilds()->where('hidden = 0')->enum() > 0" href="#" class="open-subcategory"><img src="{$pubUrl}/img/category-open.png" width="15"></a>
+                    </div>
+                    <div class="subcategory-panel">
+                        <div n:foreach="$categoryItem->getDirectChilds()->where('hidden = 0')->orderBy(['priority' => 'ASC']) as $subcategory" class="category subcategory">
+                            <div class="category-acordion{if $subcategory->uuid == $category->uuid} active{/if}">
+                                <a n:href=":Catalog:Category:detail, $subcategory" class="name level-{$subcategory->getLevel()}">{$subcategory->name}</a>
+                                <a n:if="$subcategory->getDirectChilds()->where('hidden = 0')->enum() > 0" href="#" class="open-subcategory"><img src="{$pubUrl}/img/category-open.png" width="15"></a>
+                            </div>
+                            <div class="subcategory-panel">
+                                <div n:foreach="$subcategory->getDirectChilds()->where('hidden = 0')->orderBy(['priority' => 'ASC']) as $subsubcategory" class="category subcategory">
+                                    <div class="category-acordion{if $subsubcategory->uuid == $category->uuid} active{/if}">
+                                        <a n:href=":Catalog:Category:detail, $subsubcategory" class="name level-{$subsubcategory->getLevel()}">{$subsubcategory->name}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="category-detail">
+                <h1 class="category">{$category->name}</h1>
+                <div>{$category->text|noescape}</div>
+                {control products:paging true}
+                {control products, 'col-md-4 col-sm-6 col-xs-6'}
+                {control products:paging true}
+            </div>
+        </div>
+    </div>
+{/block}
+
+
+
+
+

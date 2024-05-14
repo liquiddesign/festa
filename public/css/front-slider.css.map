@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAUA,YAAY;AAUZ,eAAe;AAGf,aAAa;AAMb,YAAY;AAKZ,UAAU;AAKV,YAAY;AAGZ,YAAY;ACvCZ,YAAa;EACX,KAAK,EDFO,IAAI;ECGhB,SAAS,EAAE,IAAI;EACf,cAAc,EAAE,SAAS;EAEzB,sBAAU;IACR,OAAO,EAAE,IAAI",
+"sources": ["_front-colors.scss","front-slider.scss"],
+"names": [],
+"file": "front-slider.css"
+}

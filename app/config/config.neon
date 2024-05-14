@@ -1,0 +1,104 @@
+﻿#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+
+parameters:
+	lqd_ip: 77.240.177.28
+	langs: [] #first is default language [cz,en]
+	#baseDir:is defined in boostrap.php
+	logDir: %wwwDir%/temp/log
+	userDir: %wwwDir%/userfiles
+	pubDir: %wwwDir%/public
+	libsDir: %wwwDir%/vendor/lqdlib
+	locale:
+		cz: ['cs_CZ.UTF-8','cs']
+		#sk: ['sk_SK.UTF-8','sk']
+		#de: ['de_DE.UTF-8','de']
+		en: ['en_US.UTF-8','en']
+		#ru: ['ru_RU.UTF-8','rus']
+	currency: CZK
+	currency_locale: cs_CZ
+
+php:
+	date.timezone: Europe/Prague
+latte:
+	macros:
+
+session:
+#    savePath: "%tempDir%/sessions"
+#    autoStart: smart
+
+application:
+	errorPresenter: "Web:Error"
+	catchExceptions: true
+	mapping:                     
+		*: ['App', *,  *Presenter]
+
+routing:
+	routes:
+		'scripts[/<namespace>][/<script>]': 'Tools:Run:default'
+
+forms:
+	messages: 	
+		REQUIRED : 'Tohle pole je povinné'
+		EMAIL: 'Pole musí být platný e-mail'
+		MIN_LENGTH: 'Pole musí mít alespoň %d znaků.'
+		RANGE: 'Zadejte číslo od %d do %d.'
+
+extensions:
+	storm: \Storm\Nette\Extension
+	modules: \Lqd\Modules\Extension
+
+services:   
+	latte.latteFactory:
+		setup:
+			- Lqd\Common\Filters::register(@self,@container,[currencyDigits=0])
+	- App\Catalog\Control\Factory\Products
+	repository.catalog.product: App\Catalog\DB\ProductRepository
+	repository.catalog.category: App\Catalog\DB\CategoryRepository
+
+storm:
+	default:
+		host: localhost
+		#dbname: default
+		#user: default
+		#password: "****"
+		debug: true
+		characterset: utf8           
+		collate: utf8_czech_ci
+		langs: %langs%
+		pk:
+			name: uuid
+			generator: Storm\Generator\Uuid
+		migrator:
+			structure:
+				- App\Custom\DB\*
+				- App\Catalog\DB\*
+				- App\Catalog\DB\NxN\*
+				- App\Web\DB\*
+			data:
+				- /app/modules/Custom/data/menu_items.json
+
+includes:
+	- ../../vendor/lqdlib/admin/config.neon
+	- ../../vendor/lqdlib/translator/config.neon
+	- ../../vendor/lqdlib/security/config-database.neon
+	- ../../vendor/lqdlib/web/config.neon
+	- ../../vendor/lqdlib/pages/config.neon
+	- ../../vendor/lqdlib/userfiles/config.neon
+#	- ../../vendor/lqdlib/eshop/config.neon
+	- pages.neon
+
+userfiles:
+	products:
+		origin:
+			resize: [1200,800]
+		thumbs:
+			resize: [500,500,EXACT]
+	tinyuploads:
+	tinythumbs:
+	categories:
+

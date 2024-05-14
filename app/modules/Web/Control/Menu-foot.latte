@@ -1,0 +1,5 @@
+<div class="menu-footer">
+	{foreach $items as $item}
+		<a href="{$baseUrl}/{$item->getPlink()}" class="footer-menu-link">{$item->name}</a>
+	{/foreach}
+</div>

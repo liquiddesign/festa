@@ -1,0 +1,33 @@
+{block head}
+
+    {include '_head.latte'}
+{/block}
+{block main}
+    {control breadcrumb}
+    <h1 class="icon">Festa Industry</h1>
+
+    <div class="industry-categories industry" style="padding-bottom: 50px">
+        {foreach $categories as $category}
+            <div class="category">
+                <div class="name-image-wrapper">
+                    <a n:href=":Catalog:Category:industry, $category" class="name">{$category->name}</a>
+                    <div class="image-wrapper">
+                        <a n:href=":Catalog:Category:industry, $category"><img src="{$userUrl}/categories/{$category->image}" alt="{$category->name}" title="{$category->name}"></a>
+                    </div>
+                </div>
+                <div class="divider">
+                    <img src="{$pubUrl}/img/ikonka.png" width="12"><hr>
+                </div>
+            </div>
+        {/foreach}
+    </div>
+
+    {control products:paging true}
+    {control products, 'col-md-3 col-sm-6 col-xs-6'}
+    {control products:paging true}
+{/block}
+
+
+
+
+

@@ -1,0 +1,113 @@
+@import "admin-colors";
+@import "admin-mixins";
+
+.lqd-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid $border-color;
+  @include border-rounded();
+
+  thead {
+    tr {
+      background-color: lighten($border-color, 10);
+
+      &:first-child {
+        th {
+          border: 0;
+        }
+      }
+
+      th {
+        &.minimal {
+          width: 30px;
+        }
+
+        &.int {
+          width: 80px;
+        }
+
+        &.edit-icon {
+          width: 20px;
+        }
+
+        &.asc {
+          &::before {
+            color: $lqd-color-light;
+            font-family: 'Font Awesome\ 5 Free';
+            content: '\f160 ';
+            padding-right: 4px;
+          }
+        }
+
+        &.desc {
+          &::before {
+            color: $lqd-color-light;
+            font-family: 'Font Awesome\ 5 Free';
+            content: '\f161 ';
+            padding-right: 4px;
+          }
+        }
+
+        &.int {
+          &.asc {
+            &::before {
+              color: $lqd-color-light;
+              font-family: 'Font Awesome\ 5 Free';
+              content: '\f162 ';
+              padding-right: 4px;
+            }
+          }
+
+          &.desc {
+            &::before {
+              color: $lqd-color-light;
+              font-family: 'Font Awesome\ 5 Free';
+              content: '\f163 ';
+              padding-right: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: lighten($border-color, 5);
+      }
+    }
+  }
+
+  td, th {
+    white-space: nowrap;
+    vertical-align: middle !important;
+    border-right: 1px solid $border-color;
+    padding: 8px 12px;
+
+    &:last-child {
+      border-right: 0 !important;
+    }
+  }
+
+  th {
+    border-right: 1px solid $border-color !important;
+  }
+
+  .form-check-input {
+    top: 50%;
+    left: 50%;
+    transform: translate(-51%, 16%);
+    margin: 0;
+  }
+
+  .selected-row {
+    background-color: #f1f1f1;
+  }
+
+  .form-control {
+    font-size: 1rem;
+    height: auto !important;
+    padding: .075rem .5rem;
+  }
+}

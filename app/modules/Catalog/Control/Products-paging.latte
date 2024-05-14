@@ -1,0 +1,29 @@
+<div class="products-filter">
+	<div class="products-paging">
+		{control list-paging}
+	</div>
+
+	<div class="products-per-page">
+		{_produkty.naStranku}:
+		<div class="dropmenu">
+			<span class="active">{$control['list']->onpage}</span><i class="fas fa-chevron-down dropbtn"></i>
+			<div class="dropmenu-content">
+				<a n:if="$control['list']->onpage != 12" n:class="$control['list']->onpage == 12 ? 'active'" href="{plink this, products-list-onpage => 12}">12</a>
+				<a n:if="$control['list']->onpage != 24" n:class="$control['list']->onpage == 24 ? 'active'" href="{plink this, products-list-onpage => 24}">24</a>
+				<a n:if="$control['list']->onpage != 36" n:class="$control['list']->onpage == 36 ? 'active'" href="{plink this, products-list-onpage => 36}">36</a>
+				<a n:if="$control['list']->onpage != 72" n:class="$control['list']->onpage == 72 ? 'active'" href="{plink this, products-list-onpage => 72}">72</a>
+			</div>
+		</div>
+	</div>
+</div>
+{*<div class="f-filter__box">*}
+{*	<div class="clearfix">*}
+
+{*		<nav class="paging">*}
+{*		{control list-paging}*}
+{*			<span class="paging__total">*}
+{*				Celkem <span class="paging__num">{$control['list']['paging']->paginator->itemCount}</span> {$a='položka'|plur:$control['list']['paging']->paginator->itemCount}*}
+{*			</span>*}
+{*		</nav>*}
+{*	</div>*}
+{*</div>*}

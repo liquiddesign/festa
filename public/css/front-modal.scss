@@ -1,0 +1,14 @@
+.modal-content {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.modal-header {
+  @for $i from 1 through 6 {
+    h#{$i} {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

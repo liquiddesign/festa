@@ -1,0 +1,378 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: black;
+    line-height: 1.35em;
+    margin:6px;
+    padding:0px;
+    background-color: white;
+}
+
+/* GLOBANI NASTAVENI PRVKU -------------------------------------------------------------------*/
+h1 {margin:1em 0 0.5em; padding: 0; font-size: 30px; font-weight: bold; line-height: 1.1;}
+h2 {margin:1em 0 0.5em; padding: 0; font-size: 26px; font-weight: normal; line-height: 1.1;}
+h3 {margin:1em 0 0.5em; padding: 0; font-size: 22px; font-weight: normal; line-height: 1.1;}
+h4 {margin:1em 0 0.5em; padding: 0; font-size: 18px; font-weight: normal; line-height: 1.2;}
+h5 {margin:1em 0 0.5em; padding: 0; font-size: 16px; font-weight: normal; line-height: 1.2;}
+
+h1 b, h2 b, h3 b, h4 b, h5 b, 
+h1 strong, h2 strong, h3 strong, h4 strong, h5 strong {outline: #000 dotted thin; background-color: #eee;}
+
+h1:first-of-type {margin-top: 0.5em}
+
+a {color: red;}
+a:hover {text-decoration:none}
+
+a.btn {background-color: #f33; color: #fff; padding: 5px; display: inline-block;}
+a.btn-large {padding: 10px; margin: 8px 0;}
+a.btn-border {color: red; background-color: #fff; border: 2px solid #f33}
+
+img {border:0}
+/* responsive images inside tiny editor */
+img.responsive {max-width: 100%; height: auto;}
+
+/* default lists */
+ul,ol {padding: 0; margin: 1em 0; padding-left: 4em}
+ul li, ol li {padding: 0; margin: .2em 0;}
+
+/* checklist special style */
+ul.check {}
+ul.check li {list-style-type: none; position: relative;}
+/*ul.check li:before {content: '\2022 '; color: #006df0; padding-right: 0.5em;}*/
+ul.check li:before {
+    content: "";
+    line-height: 5px;
+    width: 5px;
+    height: 5px;
+    background-color: #006df0;
+    position: absolute;
+    left: -14px;
+    margin: 5px 15px 0 0;
+    border-radius: 50%;
+}
+
+.clear {clear:both; height: 0px; line-height: 0px; overflow: hidden; font-size:0; margin:0; padding:0;}
+
+p {margin: 1em 0;}
+p.perex {font-size: 1.3em; line-height: 1.4em; margin-left: 0; margin-right: 0} /* Perex */
+p span[style] {line-height: 1.35em} /* fix */
+p.cite {background-color: #f3f3f3; margin: 1em 0; padding: 0.5em 0.7em; border-left: 3px solid #999} /* Citace */
+
+table {font-size: 1em; cursor:default; font-family: Arial, Helvetica, sans-serif;}
+table td, table th {cursor:text; font-family: Arial, Helvetica, sans-serif;}
+td.mceSelected, th.mceSelected {background-color:#3399ff !important}
+
+table {border-collapse: collapse; border-spacing: 1px;}
+table tr {}
+table td {border: 1px solid #aaa; padding: 3px 5px}
+table thead td, table th {background-color: #ddd; border-bottom: 2px solid #333 !important; font-weight: bold; color: black}
+table tbody td {}
+
+/* Basic table */
+table {border-collapse: collapse; border-spacing: 1px;}
+table tr {}
+table td {padding: 3px 5px}
+table thead td, table th {background-color: #ddd; border-bottom: 1px solid #333 !important; font-weight: bold;}
+table tbody td {}
+
+/* Lined table */
+table.lines {}
+table.lines tr {}
+table.lines td {}
+table.lines thead td, table.lines th {}
+table.lines tbody td {}
+
+/* Layout table */
+table.layout {}
+table.layout td, table.layout th {vertical-align: top; background-color: inherit; border-bottom: inherit !important; font-weight: normal;}
+
+/* Responsive 2col table */
+table.responsive2col {width: 100%}
+table.responsive2col td, table.responsive2col th {width: 50%; vertical-align: top; background-color: inherit; border-bottom: inherit !important; font-weight: normal;}
+
+.mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {border: 1px dashed #BBB;}
+a.mceItemAnchor {display:inline-block; width:11px !important; height:11px  !important; background:url(img/items.gif) no-repeat 0 0;}
+ins {border-bottom:1px solid green; text-decoration: none; color:green}
+del {color:red; text-decoration:line-through}
+cite {border-bottom:1px dashed blue}
+
+
+/* tyto styly se pravděpodobně nepoužívají */
+.img-label {background: black; color: white; padding: 5px; display: block; font-style: italic;}
+.mce_contactform {width: 300px; background-image: url('http://dummyimage.com/300x100/c9c0ef/ffffaa&text=Kontaktní formulář');}
+.mce_gallery {background-image: url('http://dummyimage.com/100x100/c9c0ef/ffffaa&text=Galerie');}
+
+
+/* Bootstrap template styles */
+
+
+
+/* Breakpointy Bootstrapu 3 */
+/*div.col-md-1 {width: 8.33333333%;}*/
+/*div.col-md-2 {width: 16.66666667%;}*/
+/*div.col-md-3 {width: 25%;}*/
+/*div.col-md-4 {width: 33.33333333%;}*/
+/*div.col-md-5 {width: 41.66666667%;}*/
+/*div.col-md-6 {width: 50%;}*/
+/*div.col-md-7 {width: 58.33333333%;}*/
+/*div.col-md-8 {width: 66.66666667%;}*/
+/*div.col-md-9 {width: 75%;}*/
+/*div.col-md-10 {width: 83.33333333%;}*/
+/*div.col-md-11 {width: 91.66666667%;}*/
+/*div.col-md-12 {width: 100%;}*/
+
+/* Paragraph inside column - there is almost some always paragraph. But we wand to have the column in some minimal height */
+div.col-md-1 p, div.col-md-2 p, div.col-md-3 p, div.col-md-4 p, div.col-md-5 p, div.col-md-6 p, 
+div.col-md-7 p, div.col-md-8 p, div.col-md-9 p, div.col-md-10 p, div.col-md-11 p, div.col-md-12 p {min-height: 1rem;}
+
+
+/* Allowed combinations of text blocks */
+/*
+text-block block-extended
+text-block block-extended block-dark
+text-block block-wide
+text-block block-wide block-grey
+text-block block-dark
+text-block block-grey
+*/
+div.text-block {background-color: #d4e9ff; padding: 1em;}
+div.text-block.block-grey {background-color: #eee}
+div.text-block.block-dark {background-color: #505050; color: white;}
+div.text-block.block-extended {border-left: 4px solid #c7c7c7; border-right: 4px solid #c7c7c7;}
+div.text-block.block-wide {border-left: 8px solid #c7c7c7; border-right: 8px solid #c7c7c7;}
+
+/* First/last direct childs remove margins */
+.text-block>h1:first-child,
+.text-block>h2:first-child,
+.text-block>h3:first-child,
+.text-block>h4:first-child,
+.text-block>h5:first-child,
+.text-block>h6:first-child,
+.text-block>ol:first-child,
+.text-block>ul:first-child,
+.text-block>p:first-child {margin-top: 0}
+
+/* Note: */
+/* |= is CSS2 and does not matches dash "-" eg. "col-" */
+/* ^= is CSS3 and can match even dash */
+/*.text-block div[class|="col"] h1:first-child,
+.text-block div[class|="col"] h2:first-child,
+.text-block div[class|="col"] h3:first-child,
+.text-block div[class|="col"] h4:first-child,
+.text-block div[class|="col"] h5:first-child,
+.text-block div[class|="col"] h6:first-child,
+.text-block div[class|="col"] ol:first-child,
+.text-block div[class|="col"] ul:first-child,
+.text-block div[class|="col"] p:first-child {margin-top: 0;}*/
+/* better with margins on all devices than no margins on mobile */
+
+.text-block>h1:last-child,
+.text-block>h2:last-child,
+.text-block>h3:last-child,
+.text-block>h4:last-child,
+.text-block>h5:last-child,
+.text-block>h6:last-child,
+.text-block>ol:last-child,
+.text-block>ul:last-child,
+.text-block>p:last-child {margin-bottom: 0}
+
+/*.text-block div[class|="col"] h1:last-child,
+.text-block div[class|="col"] h2:last-child,
+.text-block div[class|="col"] h3:last-child,
+.text-block div[class|="col"] h4:last-child,
+.text-block div[class|="col"] h5:last-child,
+.text-block div[class|="col"] h6:last-child,
+.text-block div[class|="col"] ol:last-child,
+.text-block div[class|="col"] ul:last-child,
+.text-block div[class|="col"] p:last-child {margin-bottom: 0;}*/
+/* better with margins on all devices than no margins on mobile */
+
+/* Too junior version of this code. Needs more testing :) */
+/*@media (max-width: 991px) {
+    .text-block div[class|="col"] ~ div[class|="col"] {margin-top: 15px;}
+}*/
+
+/* end */
+
+.mceNonEditable,
+.mce-content-body *[contentEditable=false],
+.mce-content-body *[contentEditable=false][data-mce-selected] {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    pointer-events: none;
+}
+
+.line-box,
+.text-box
+ {
+    border: 1px solid red;
+}
+
+.container,
+.container-fluid {
+    border: 1px dashed grey;
+}
+
+.tiny-component {
+    position: relative;
+    padding: 2em .5em;
+}
+
+.tiny-component__description {
+    display: block;
+    position: absolute;
+    color: grey;
+    font-size: 10px;
+    left: .5em;
+    top: 5px;
+}
+
+.circle-icon {
+    display: flex;
+    font-size: 2em;
+    font-weight: 700;
+    width: 60px;
+    height: 60px;
+    border: 1px solid blue;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.grey-box {
+    background-color: #f6f6f6;
+}
+
+.security-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.security-item .circle-icon {
+    margin: 0;
+    margin-right: 5px;
+}
+
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+[class^="col-"] {
+    position: relative;
+    border: 1px solid black;
+    padding: 2em .5em;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.row {
+    position: relative;
+    display: flex;
+    border: 1px dashed pink;
+    flex-wrap: wrap;
+}
+
+.cl-1,
+.cl-sm-1,
+.cl-md-1,
+.cl-lg-1 {
+    flex-basis: calc(8.3% - 1.2em);
+}
+
+.cl-2,
+.cl-sm-2,
+.cl-md-2,
+.cl-lg-2 {
+    flex-basis: calc(16.6% - 1.2em);
+}
+
+.cl-3,
+.cl-sm-3,
+.cl-md-3,
+.cl-lg-3 {
+    flex-basis: calc(25% - 1.2em);
+}
+
+.cl-4,
+.cl-sm-4,
+.cl-md-4,
+.cl-lg-4 {
+    flex-basis: calc(33% - 1.2em);
+}
+
+.cl-5,
+.cl-sm-5,
+.cl-md-5,
+.cl-lg-5 {
+    flex-basis: calc(41.6% - 1.2em);
+}
+
+.cl-6,
+.cl-sm-6,
+.cl-md-6,
+.cl-lg-6 {
+    flex-basis: calc(50% - 1.2em);
+}
+
+
+.cl-7,
+.cl-sm-7,
+.cl-md-7,
+.cl-lg-7 {
+    flex-basis: calc(58.3% - 1.2em);
+}
+
+.cl-8,
+.cl-sm-8,
+.cl-md-8,
+.cl-lg-8 {
+    flex-basis: calc(66.6% - 1.2em);
+}
+
+.cl-9,
+.cl-sm-9,
+.cl-md-9,
+.cl-lg-9 {
+    flex-basis: calc(75% - 1.2em);
+}
+
+.cl-10,
+.cl-sm-10,
+.cl-md-10,
+.cl-lg-10 {
+    flex-basis: calc(83.3% - 1.2em);
+}
+
+.cl-11,
+.cl-sm-11,
+.cl-md-11,
+.cl-lg-11 {
+    flex-basis: calc(91.6% - 1.2em);
+}
+
+.cl-12,
+.cl-sm-12,
+.cl-md-12,
+.cl-lg-12 {
+    flex-basis: calc(100% - 1.2em);
+}
+
+
+#mytoolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.mce-btn-small .mce-ico.fas {
+    font-family: 'Font Awesome\ 5 Free' !important;
+    font-weight: 900;
+}

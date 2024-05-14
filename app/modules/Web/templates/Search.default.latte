@@ -1,0 +1,12 @@
+{block main}
+    {control breadcrumb}
+    <h1>{_hledani.h1} <strong>"{$q}"</strong></h1>
+    <h2>{_hledani.produkty}</h2>
+    {if $products->enum() > 0}
+        {control products:paging true}
+        {control products, 'col-md-3 col-sm-6 col-xs-6'}
+        {control products:paging true}
+    {else}
+        {_hledani.zadneVysledky}
+    {/if}
+{/block}

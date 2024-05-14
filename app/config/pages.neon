@@ -1,0 +1,63 @@
+# Zaznami su len pre ukazku, Custom Index sa vytvara cez DB
+pages:
+	pages:
+		custom_index:
+			name: 'Homepage'
+			title: 'Index'
+			url: ''
+			plink: 'Custom:Index:default'
+		prodej:
+			name: 'Prodej'
+			title: 'Prodej'
+			url: 'prodej'
+			plink: 'Custom:Index:sale'
+		category_index:
+			name: 'Produkty'
+			title: 'Produkty'
+			url: 'produkty'
+			plink: 'Catalog:Category:default'
+		category_detail:
+			name: 'Kategorie detail'
+			title: 'Kategorie detail'
+			url: 'kategorie/<category>'
+			plink: 'Catalog:Category:detail'
+		category_industry:
+			name: 'Festa Industry'
+			title: 'Festa Industry'
+			url: 'industry/<category>'
+			plink: 'Catalog:Category:industry'
+		product_detail:
+			name: 'Produkt detail'
+			title: 'Produkt detail'
+			url: 'produkt/<product>'
+			plink: 'Catalog:Product:detail'
+		import_categories:
+			name: 'Import categories'
+			title: ''
+			url: 'import/categories'
+			plink: 'Catalog:Import:categories'
+		import_products:
+			name: 'Import products'
+			title: ''
+			url: 'import/products'
+			plink: 'Catalog:Import:products'
+		import_products_images:
+			name: 'Import products images'
+			title: ''
+			url: 'import/products-images'
+			plink: 'Catalog:Import:productsImages'
+		resize_products_images:
+			name: 'Resize products images'
+			title: ''
+			url: 'import/products-images-resize'
+			plink: 'Catalog:Import:productsImagesResize'
+		import_products_files:
+			name: 'Import products files'
+			title: ''
+			url: 'import/products-files'
+			plink: 'Catalog:Import:productsFiles'
+#		detail:
+#			name: 'Detail nečeho'
+#			title: 'Detail: {$test->name}'
+#			url: 'detail/<test>'
+#			plink: 'Custom:Index:detail'

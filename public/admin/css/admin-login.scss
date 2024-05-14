@@ -1,0 +1,231 @@
+@import "admin-base";
+
+$font-color: #cbcaca;
+$error: #ee2e2c;
+
+body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    color: $color-lqd;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1;
+  }
+}
+
+h1 {
+  font-size: 30px;
+}
+
+input,
+button[type=submit] {
+  color: white;
+  font-size: 1em;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+//input[type=text],
+//input[type=password] {
+//  color: $lqd-color-light;
+//  height: 60px;
+//  padding-left: 40px;
+//  background-color: transparent;
+//  border: 0;
+//  border-bottom: 2px solid #eee;
+//
+//  &.user-input {
+//    background-image: url("../../icons/user.svg");
+//    background-repeat: no-repeat;
+//    background-size: 16px;
+//    background-position: 13px center;
+//  }
+//
+//  &.password-input {
+//    content: 'wohoo';
+//    background-image: url("../../icons/locked-padlock.svg");
+//    background-repeat: no-repeat;
+//    background-size: 16px;
+//    background-position: 13px center;
+//  }
+//
+//  &:hover,
+//  &:focus {
+//    color: $lqd-color-light;
+//    outline: none !important;
+//    box-shadow: none;
+//    border: 0;
+//    border-bottom: 2px solid $color-lqd;
+//  }
+//
+//  &::-webkit-input-placeholder {
+//    color: #cbcaca;
+//    font-weight: normal;
+//  }
+//
+//  &::-moz-placeholder {
+//    color: #cbcaca;
+//    font-weight: normal;
+//  }
+//
+//  &:-ms-input-placeholder {
+//    color: #cbcaca;
+//    font-weight: normal;
+//  }
+//
+//  &:-moz-placeholder {
+//    color: #cbcaca;
+//    font-weight: normal;
+//  }
+//}
+
+input[type=submit],
+button[type=submit]{
+  background-color: $lqd-color-light;
+  border: 0;
+  height: 46px;
+  padding: 0 2em;
+
+  //&:hover,
+  //&:focus {
+  //  background-color: darken($lqd-color-light, 5);
+  //  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  //}
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  @include display-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  //background-image: linear-gradient(-20deg, $color-lqd 0%, $lqd-color-light 100%);
+  //@include gradient(180deg, $lqd-color, $lqd-color-light);
+  z-index: 3;
+}
+
+.login-panel {
+  background-color: white;
+  width: calc(100% - 15px);
+  padding: 40px 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.logo-panel {
+  background-color: #222222;
+  height: 96px;
+}
+
+.logo {
+  height: 64px;
+}
+
+.circle {
+  position: fixed;
+  @include gradient(45deg, white, #fafafa);
+  width: 800px;
+  height: 800px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 42%;
+  @include border-rounded(50%);
+  z-index: -1;
+}
+
+.credits {
+  color: $font-color;
+  font-weight: 500;
+}
+
+.bubbles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../img/admin/bubbles.png');
+  z-index: -2;
+}
+
+.form-group {
+  &.has-error {
+    .help-block {
+      display: none;
+      color: $error;
+      padding: 6px;
+    }
+
+    .form-control {
+      border-bottom: 2px solid $error;
+    }
+  }
+}
+
+.login-body {
+  background-color: #F1F1F1;
+  padding: 30px 60px;
+  border: 1px solid #CCCCCC;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.form-control {
+  height: 39px !important;
+  border-color: #CCCCCC !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.09);
+}
+
+.btn {
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0,0,0,.16);
+}
+
+.login {
+  box-shadow: 0 15px 30px rgba(0,0,0,.16);
+}
+
+@media (min-width: 600px) {
+  .circle {
+    width: 1400px;
+    height: 1400px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .circle {
+    width: 2000px;
+    height: 2000px;
+    top: 48%;
+  }
+
+  .login-panel {
+    width: 500px;
+    padding: 4em;
+  }
+}
+
+@media (min-width: 992px) {
+  .circle {
+    width: 3500px;
+    height: 3500px;
+  }
+}
+

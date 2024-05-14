@@ -1,0 +1,46 @@
+{
+  "_args": [
+    [
+      "tinymce@4.5.10",
+      "C:\\wamp\\www\\cms3-beta\\public"
+    ]
+  ],
+  "_from": "tinymce@4.5.10",
+  "_id": "tinymce@4.5.10",
+  "_inBundle": false,
+  "_integrity": "sha512-mCvBBXkTfGxDCb1EUo6gKBeg0pz+pNHEhsJ4ZM1Hn0uovYxzNO/u6asmtpakfBAPnlCZGSqGp3XI8QfdDfSDrA==",
+  "_location": "/tinymce",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "tinymce@4.5.10",
+    "name": "tinymce",
+    "escapedName": "tinymce",
+    "rawSpec": "4.5.10",
+    "saveSpec": null,
+    "fetchSpec": "4.5.10"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.5.10.tgz",
+  "_spec": "4.5.10",
+  "_where": "C:\\wamp\\www\\cms3-beta\\public",
+  "bugs": {
+    "url": "http://www.tinymce.com/develop/bugtracker.php"
+  },
+  "description": "Web based JavaScript HTML WYSIWYG editor control.",
+  "keywords": [
+    "editor",
+    "wysiwyg",
+    "tinymce",
+    "richtext",
+    "javascript",
+    "html"
+  ],
+  "license": "LGPL-2.1",
+  "main": "tinymce.js",
+  "name": "tinymce",
+  "version": "4.5.10"
+}

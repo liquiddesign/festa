@@ -1,0 +1,15 @@
+<script type="text/javascript">
+    var pub_url = '{$pubUrl|noescape}';
+    var base_url = '{$baseUrl|noescape}';
+</script>
+<script src="{$nodeUrl}/jquery/dist/jquery.min.js"></script>
+<script src="{$pubUrl}/plugins/lity-video-plugin/lity.js"></script>
+<script src="{$nodeUrl}/nette.ajax.js/nette.ajax.js"></script>
+<script src="{$nodeUrl}/nette-forms/src/assets/netteForms.min.js"></script>
+<script src="{$nodeUrl}/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{$nodeUrl}/lightbox2/dist/js/lightbox.min.js"></script>
+<script src="{$nodeUrl}/owl.carousel/dist/owl.carousel.min.js"></script>
+<script src="{$pubUrl}/js/script.js?{$ts}"></script>
+{block scripts}
+{/block}
+{$settings->scripts_footer|noescape}

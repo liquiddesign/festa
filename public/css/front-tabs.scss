@@ -1,0 +1,61 @@
+@import "front-colors";
+
+.lqd-tabs {
+
+}
+
+.lqd-tab-label {
+  width: 100%;
+  color: white;
+  background-color: $color-lqd;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  border: 1px solid transparent;
+
+  &[aria-expanded="true"] {
+    //background-color: darken($color-lqd, 30);
+    border: 1px solid $color-lqd;
+  }
+
+  i {
+    &.rotate {
+      transform: rotate(0deg);
+      transition: .3s;
+    }
+
+    &.rotate2 {
+      transform: rotate(180deg);
+      transition: .3s;
+    }
+  }
+}
+
+.lqd-tab-body {
+  flex: 1 1 auto;
+  padding: .1em 0;
+}
+
+@media (min-width: 768px) {
+  .lqd-tab-label {
+    color: $color-main;
+    background-color: transparent;
+    border-bottom: 2px solid #ddd;
+    width: auto;
+
+    &[aria-expanded="true"],
+    &[aria-selected="true"] {
+      color: $color-lqd;
+      background-color: transparent;
+      border-bottom: 5px solid$color-lqd;
+    }
+
+    &:hover {
+      color: $color-main;
+      text-decoration: none;
+    }
+
+    i {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAWA,SAAU;EACR,KAAK,EAHK,OAAO;;AAMnB,OAAQ;EACN,gBAAgB,EAPN,OAAO;;ACNjB,eAAG;EACD,gBAAgB,EDDL,IAAI",
+"sources": ["_admin-colors.scss","admin-table.scss"],
+"names": [],
+"file": "admin-table.css"
+}

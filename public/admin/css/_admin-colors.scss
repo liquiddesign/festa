@@ -1,0 +1,27 @@
+$color-font: #333;
+$color-link: #445bc1;
+
+$border-color: #ddd;
+
+$lqd-color-light: #267BCF;
+$lqd-color: #314280;
+$navbar-background: white;
+$navbar-text: #333;
+$color-lqd: #485cbf;
+
+$color-block-blue: rgba(218,241,255,1);
+$color-block-yellow: rgba(255,240,206,1);
+$color-block-grey: rgba(241, 241, 241, 1);
+
+$color-highlight-green: #18c5c3;
+$color-highlight-red: #ff6464;
+
+$bg-cite: #f3f3f3;
+
+.text-lqd {
+  color: $color-lqd;
+}
+
+.bg-lqd {
+  background-color: $color-lqd;
+}

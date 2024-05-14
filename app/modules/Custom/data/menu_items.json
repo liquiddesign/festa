@@ -1,0 +1,72 @@
+{
+   "Lqd\\Pages\\DB\\Page" : [
+    {
+      "uuid" : "products",
+      "title" : "Produkty",
+      "plink" : "Catalog:category:detail",
+      "template" : "category_index",
+      "url" : "produkty",
+      "description" : ""
+    },
+    {
+      "uuid" : "product_news",
+      "title" : "Nové produkty",
+      "plink" : "Catalog:Product:news",
+      "template" : "product_news",
+      "url" : "nove-produkty",
+      "description" : ""
+    },
+    {
+      "uuid" : "festa_industry",
+      "title" : "Festa industry",
+      "plink" : "Catalog:Category:industry",
+      "template" : "category_industry",
+      "url" : "festa-industry",
+      "description" : ""
+    }
+  ],
+  "Lqd\\Web\\DB\\MenuItem" : [
+    {
+      "uuid" : "products",
+      "name" : "Produkty",
+      "fk_menu" : "main",
+      "fk_page" : "products",
+      "path" : 2222
+    },
+    {
+      "uuid" : "new-products",
+      "name" : "Novinky",
+      "fk_menu" : "main",
+      "fk_page" : "product_news",
+      "path" : 3333
+    },
+    {
+      "uuid" : "festa_industry",
+      "name" : "Festa Industry",
+      "fk_menu" : "main",
+      "fk_page" : "festa_industry",
+      "path" : 4444
+    },
+    {
+      "uuid" : "products-footer",
+      "name" : "Produkty",
+      "fk_menu" : "footer",
+      "fk_page" : "products",
+      "path" : 2223
+    },
+    {
+      "uuid" : "new-products-footer",
+      "name" : "Novinky",
+      "fk_menu" : "footer",
+      "fk_page" : "product_news",
+      "path" : 3334
+    },
+    {
+      "uuid" : "festa_industry-footer",
+      "name" : "Festa Industry",
+      "fk_menu" : "footer",
+      "fk_page" : "festa_industry",
+      "path" : 4445
+    }
+  ]
+}

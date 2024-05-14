@@ -1,0 +1,34 @@
+@import "front-colors";
+
+.gallery-image {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  box-sizing: border-box;
+  flex-grow: 0;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  figure {
+    background: $color-gallery-image-hover;
+    margin: 0;
+
+    img {
+      opacity: 1;
+      -webkit-transition: .3s ease-in-out;
+      transition: .3s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        opacity: .5;
+      }
+    }
+  }
+}
+
+.gallery-image-cover {
+
+}

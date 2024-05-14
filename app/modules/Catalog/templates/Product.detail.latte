@@ -1,0 +1,94 @@
+{block head}
+    {include '_head.latte'}
+{/block}
+{block main}
+    {control breadcrumb}
+    <div class="product">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-image" n:if="$product->image">
+                    <a href="{$userUrl}/products/detail/{$product->image}?{$ts}" data-lightbox="{$product->uuid}">
+                        <img n:if="$product->image" src="{$userUrl}/products/detail/{$product->image}?{$ts}" alt="{$product->name}">
+                    </a>
+                </div>
+                <div class="product-gallery">
+                    <div n:foreach="$product->getPhotos() as $photo" class="product-gallery-image">
+                        <a href="{$userUrl}/products_gallery/detail/{$photo->image}?{$ts}" data-lightbox="{$product->uuid}">
+                            <img src="{$userUrl}/products_gallery/thumb/{$photo->image}?{$ts}" alt="{$photo->description}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-name"><h1>{$product->name}</h1></div>
+                <div class="product-parameters">
+                    <div class="product-ean">EAN: <span class="color-red">{$product->ean}</span></div>
+                    <div class="product-weight">{_detailProduktu.weight}: <span class="color-red">{$product->weight} kg</span></div>
+                    <div class="product-package">{_detailProduktu.inPackage}: <span class="color-red">{$product->in_package} {_detailProduktu.ks}</span></div>
+                </div>
+                <div class="product-perex">{$product->perex|striptags|noescape}</div>
+                <div n:if="$product->isInFestaIndustry()" class="festa-industry color-block grey">
+                    <div><p>{_detailProduktu.industry}</p></div>
+                    <div class="static-part">
+                        <a n:href=":Catalog:Category:industry" class="button big">{_uvod.cistVice}</a>
+                        <div class="logo-industry">
+                            <div><img src="{$pubUrl}/img/festa-logo.png" /></div>
+                            <div class="text">Industry</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="icon">{_detailProduktu.description}</h4>
+                <div class="block-padding">{$product->text|noescape}</div>
+                <br>
+            </div>
+            <div class="col-md-6">
+                <h4 class="icon">{_detailProduktu.documents}</h4>
+                <div class="block-padding">
+                    <div n:foreach="$product->getFiles() as $file" class="product-file">
+                        <div class="name-part">
+                            <img src="{$pubUrl}/img/pdf-icon.png" alt="pdf file download">
+                            <span class="name">{!empty($file->description) ? $file->description : $file->file}</span>
+                        </div>
+
+                        <a href="{link downloadFile!, $file}" class="button">{_detailProduktu.download}</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        {if $relatedProducts && $relatedProducts->enum() > 0}
+            <hr>
+            <div class="product-related">
+                <div class="header">
+                    <img src="{$pubUrl}/img/ikonka.png" width="25">
+                    <h2>{_detailProduktu.relatedProducts}</h2>
+                </div>
+                <br>
+                <div class="slider-wrapper">
+                    <div id="owl-carousel-products" class="owl-carousel owl-theme">
+                        <div n:foreach="$relatedProducts as $relatedProduct" class="item">
+                            <div class="product-box">
+                                {var imgLink = $relatedProduct->image ? $userUrl . '/products/thumb/' . $relatedProduct->image : $pubUrl .'/img/no-image.jpg' }
+                                <a class="image d-flex" href="{plink :Catalog:Product:detail, $relatedProduct}" style="background-image: url('{$imgLink|noescape}');"></a>
+                                <div class="name">
+                                    <a n:href=":Catalog:Product:detail, $relatedProduct">{$relatedProduct->name}</a>
+                                </div>
+                                <div class="description">{$relatedProduct->perex|striptags|noescape}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/if}
+    </div>
+{/block}
+
+
+
+
+

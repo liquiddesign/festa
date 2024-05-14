@@ -1,0 +1,87 @@
+<html>
+{include '../../@head.latte'}
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VXJMMGR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header id="menu">
+                {control menu}
+            </header>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sale-page">
+        <div class="images">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <img src="{$pubUrl}/img/sale1.png" width="100%">
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <img src="{$pubUrl}/img/sale2.png" width="100%">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-8 offset-md-2">
+                <div class="center">
+                    <div class="icon"><img src="{$pubUrl}/img/ikonka.png" width="23"></div>
+                    <h3>Nářadí Festa</h3>
+                    <p class="perex">najdete ve všech dobrých železářstvích, stavebninách, zahradních centrech a hobby marketech, které mohou být označeny těmito samolepkami.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="" style="display: flex; justify-content: space-between">
+                    <div style="width: 100%; border-bottom: 1px solid #009fdf; align-self: center"></div>
+                    <div class="icon-small px-3"><img src="{$pubUrl}/img/ikonka.png" width="13"></div>
+                    <div style="width: 100%; border-bottom: 1px solid #009fdf; align-self: center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer">
+                    <div class="logo">
+                        <a href="{plink :Custom:Index:default, lang => $presenter->lang}"><img src="{$pubUrl}/img/festa-logo.png" alt="festa logo" width="180" /></a>
+                    </div>
+                    <img class="icon" src="{$pubUrl}/img/ikonka.png" width="13">
+
+                    <div class="menu-part">
+                        {control menu:foot}
+                        <div class="copy"><small>Copyright &copy; {date('Y')} FESTA Všechna práva vyhrazena.</small></div>
+                    </div>
+
+                    <div class="social">
+                        <a href="https://www.facebook.com/FESTA-TOOLS-103234298256437" target="_blank" rel="noopener"><img src="{$pubUrl}/icons/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/festatools/" target="_blank" rel="noopener"><img src="{$pubUrl}/icons/instagram.png" alt="Instagram"></a>
+{*                        <a n:if="!empty($presenter->template->settings->twitter_link)" href="{$presenter->template->settings->twitter_link}"><i class="fab fa-twitter"></i></a>*}
+{*                        <a n:if="!empty($presenter->template->settings->facebook_link)"href="{$presenter->template->settings->facebook_link}"><i class="fab fa-facebook-f"></i></a>*}
+{*                        <a n:if="!empty($presenter->template->settings->youtube_link)"href="{$presenter->template->settings->youtube_link}"><i class="fab fa-youtube"></i></a>*}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{include '../../@scripts.latte'}
+</body>
+</html>
+

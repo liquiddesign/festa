@@ -1,0 +1,73 @@
+@import "admin-colors";
+
+.admin-table {
+
+  tr {
+    th {
+      white-space: nowrap;
+
+      &:first-child {
+        min-width: 170px;
+        width: 170px;
+      }
+    }
+
+    &:first-child {
+      td, th {
+        border-top: 0;
+      }
+    }
+
+    &:last-child {
+      td, th {
+        border-bottom: 1px solid #dee2e6;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      th {
+        &:first-child {
+          padding-top: .5em !important;
+        }
+      }
+    }
+  }
+
+  th, td {
+    padding: 6px !important;
+  }
+
+  .form-control {
+    font-size: 1rem;
+    height: auto !important;
+    width: auto !important;
+    padding: .075rem .5rem;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+}
+
+main {
+  fieldset {
+    &:last-of-type {
+      table {
+        tr {
+          td, th {
+            border-bottom: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.admin-legend {
+  font-size: 1.3em;
+  font-weight: bold;
+  background-color: #eee;
+  margin-bottom: 0;
+}

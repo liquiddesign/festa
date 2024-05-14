@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,cAAe,CACb,WAAW,CAAE,IAAI",
+"sources": ["front-gallery.scss"],
+"names": [],
+"file": "front-gallery.css"
+}
