@@ -209,6 +209,10 @@ class ImportPresenter extends Presenter
 			
 			$i = 0;
 			
+			if (!isset($productPhotosClear[$product->getPK()])) {
+				continue;
+			}
+			
 		    foreach ($productPhotosClear[$product->getPK()] as $productPhoto) {
 				if ($i === 0) {
 					$i++;
