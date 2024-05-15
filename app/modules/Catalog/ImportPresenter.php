@@ -103,6 +103,7 @@ class ImportPresenter extends Presenter
 				'on_palette' => $leviorProduct['inPalett'] ?: 0,
 				'deleted' => 0,
 				'image' => $leviorProduct['imageFileName'],
+				'showDeclarationConformity' => $leviorProduct['showDeclarationConformity'],
 			];
 		    $this->stm->getRepository(DB\Product::class)->sync(new Product($importedProduct));
 
@@ -149,6 +150,11 @@ class ImportPresenter extends Presenter
 
     public function importProductsFiles()
     {
+		// prohlášení o shodě aktuální
+		$sourcePath = $this->context->parameters['levior']['url'] . '/userfiles/product_files/prohlaseni-o-shode-aktualni.pdf';
+		$targetPath = $this->context->parameters['userDir'] . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'prohlaseni-o-shode-aktualni.pdf';
+		file_put_contents($targetPath, file_get_contents($sourcePath));
+		
 		$sql = 'SELECT * FROM eshop_file';
 		$statement = $this->getLeviorDb()->prepare($sql);
 		$statement->execute();
@@ -277,11 +283,11 @@ class ImportPresenter extends Presenter
     
     public function actionProducts()
     {
-        $this->importCategories();
+//        $this->importCategories();
         $this->importProducts();
         $this->importProductsFiles();
-        $this->importProductsImages();
-		$this->actionProductsImagesResize();
+//        $this->importProductsImages();
+//		$this->actionProductsImagesResize();
         
         $this->terminate();
     }

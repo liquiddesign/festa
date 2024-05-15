@@ -112,6 +112,11 @@ class Product extends Model
 	/**
 	 * @column{"default":0}
 	 */
+	public $showDeclarationConformity = false;
+
+	/**
+	 * @column{"default":0}
+	 */
 	public $priority = 0;
 
 	/**
