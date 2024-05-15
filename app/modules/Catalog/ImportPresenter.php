@@ -283,11 +283,10 @@ class ImportPresenter extends Presenter
     
     public function actionProducts()
     {
-//        $this->importCategories();
+        $this->importCategories();
         $this->importProducts();
         $this->importProductsFiles();
-//        $this->importProductsImages();
-//		$this->actionProductsImagesResize();
+        $this->importProductsImages();
         
         $this->terminate();
     }
