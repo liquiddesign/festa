@@ -1,2 +1,2 @@
 application:
-	catchExceptions: false
+	catchExceptions: true

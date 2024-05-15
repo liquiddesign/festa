@@ -6,7 +6,7 @@
 #
 
 parameters:
-	lqd_ip: 77.240.177.28
+	lqd_ip: 37.235.102.170
 	langs: [] #first is default language [cz,en]
 	#baseDir:is defined in boostrap.php
 	logDir: %wwwDir%/temp/log
