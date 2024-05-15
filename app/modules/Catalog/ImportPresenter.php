@@ -285,8 +285,8 @@ class ImportPresenter extends Presenter
     {
         $this->importCategories();
         $this->importProducts();
-//        $this->importProductsFiles();
-//        $this->importProductsImages();
+        $this->importProductsFiles();
+        $this->importProductsImages();
         
         $this->terminate();
     }
