@@ -224,10 +224,16 @@ class ImportPresenter extends Presenter
 					'hidden' => $productPhoto['hidden'],
 				];
 				
-				$this->stm->getRepository(\App\Catalog\DB\ProductPhoto::class)->sync(new \App\Catalog\DB\ProductPhoto($importedProductPhoto));
 			    $sourcePath = $this->context->parameters['levior']['url'] . '/userfiles/product_gallery_images/origin/' . $importedProductPhoto['image'];
 			    $targetPath = $this->context->parameters['userDir'] . DIRECTORY_SEPARATOR . 'products_gallery' . DIRECTORY_SEPARATOR . 'origin' . DIRECTORY_SEPARATOR. $importedProductPhoto['image'];
-			    file_put_contents($targetPath, file_get_contents($sourcePath));
+				$fileContent = @file_get_contents($sourcePath);
+				
+				if ($fileContent) {
+					file_put_contents($targetPath, $fileContent);
+					$this->stm->getRepository(\App\Catalog\DB\ProductPhoto::class)->sync(new \App\Catalog\DB\ProductPhoto($importedProductPhoto));
+				} else {
+					Debugger::log('not found image: ' . $sourcePath);
+				}
 				
 				$i++;
 		    }
