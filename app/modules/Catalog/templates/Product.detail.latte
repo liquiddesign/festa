@@ -57,7 +57,7 @@
 
                         <a href="{link downloadFile!, $file}" class="button">{_detailProduktu.download}</a>
                     </div>
-                    <div n:if="$product->showDeclarationConformity || true" class="product-file">
+                    <div n:if="$product->showDeclarationConformity" class="product-file">
                         <div class="name-part">
                             <img src="{$pubUrl}/img/pdf-icon.png" alt="pdf file download">
                             <span class="name">{_detailProduktu.prohlaseniOShode}</span>
