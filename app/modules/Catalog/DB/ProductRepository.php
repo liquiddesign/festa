@@ -58,15 +58,15 @@ class ProductRepository extends Repository
 
 	public function filterNews(\Storm\Collection $collection, $news)
 	{
-		if ($news == TRUE) {
+		if ($news === true) {
 			$collection->where('catalog_product.news = :news OR catalog_product.news_year = :year', ['news' => true, 'year' => date('Y')]);
 		}
 	}
 
 	public function filterIndustry(\Storm\Collection $collection, bool $industry)
 	{
-		if ($industry == TRUE) {
-			$collection->where('categories.industry = :industry', ['industry' => TRUE]);
+		if ($industry === true) {
+			$collection->where('catalog_product.name LIKE :industry', ['industry' => '%industry%']);
 		}
 	}
 	
