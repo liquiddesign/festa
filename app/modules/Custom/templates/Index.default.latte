@@ -1,5 +1,12 @@
 <html>
 {include '../../@head.latte'}
+
+<style>
+    .youtube-video {
+        display: none;
+    }
+</style>
+
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VXJMMGR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -81,11 +88,37 @@
             <div class="col-md-12">
                 <div class="center">
                     <div><img src="{$pubUrl}/img/ikonka.png" width="25"></div>
+                    <h2>FESTOVÁNÍ S PEPOU LIBICKÝM</h2>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-6 youtube-video" n:foreach="$videosFestovani as $videoUrl">
+                        <div class="mb-4">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="{$videoUrl}" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center">
+                    <div id="show-more" class="button big" style="margin: auto; width: 200px">{_festovani.ZobrazitVice}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hp-videos">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="center">
+                    <div><img src="{$pubUrl}/img/ikonka.png" width="25"></div>
                     <h2>NÁŘADÍ FESTA V LIBOVKÁCH PEPY LIBICKÉHO</h2>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-6" n:foreach="$videos as $key => $video">
+                    <div class="col-md-4 col-sm-6 col-xs-6" n:foreach="$videos as $key => $video">
                         <div class="video">
                             <a href="{$video['url']}" data-lity>
                                 <img src="{$pubUrl}/img/libovky/libovky-{$key}.png?{$ts}" alt="{$video['desc']}" width="100%"/>
@@ -240,6 +273,31 @@
     //     $('#mistri-modal').hide();
     //     $('#modal-overlay').hide();
     // })
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const videos = document.querySelectorAll('.youtube-video');
+        const showMoreButton = document.getElementById('show-more');
+        const maxVisible = 9;
+
+        videos.forEach((video, index) => {
+            if (index < maxVisible) {
+                video.style.display = 'block';
+            }
+        });
+
+        if (videos.length > maxVisible) {
+            showMoreButton.style.display = 'block';
+        }
+
+        showMoreButton.addEventListener('click', () => {
+            videos.forEach(video => {
+                video.style.display = 'block';
+            });
+            showMoreButton.style.display = 'none';
+        });
+    });
 </script>
 
 </body>
