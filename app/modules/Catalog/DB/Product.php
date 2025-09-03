@@ -138,8 +138,12 @@ class Product extends Model
 	 * @column{"nullable":true}
 	 */
 	public $image = '';
-
-
+	
+	/**
+	 * @column{"nullable":true}
+	 */
+	public $safetyIcons = null;
+	
 	/**
 	 * Categories
 	 * @relation{"NxN\\ProductCategory":":fk_product","Category":"fk_category"}

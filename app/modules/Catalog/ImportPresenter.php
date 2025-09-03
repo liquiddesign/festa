@@ -104,6 +104,7 @@ class ImportPresenter extends Presenter
 				'deleted' => 0,
 				'image' => $leviorProduct['imageFileName'],
 				'showDeclarationConformity' => $leviorProduct['showDeclarationConformity'],
+				'safetyIcons' => $leviorProduct['safetyIcons'],
 			];
 		    $this->stm->getRepository(DB\Product::class)->sync(new Product($importedProduct));
 

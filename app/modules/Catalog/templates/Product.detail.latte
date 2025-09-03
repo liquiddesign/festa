@@ -45,6 +45,11 @@
                 <h4 class="icon">{_detailProduktu.description}</h4>
                 <div class="block-padding">{$product->text|noescape}</div>
                 <br>
+                <div n:if="$product->safetyIcons">
+                    <div class="product-safety-icons" n:inner-foreach="explode(';', $product->safetyIcons) as $safetyIcon">
+                        <img src="{$userUrl}/safety_icons/{$safetyIcon}.png" alt="" />
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <h4 class="icon">{_detailProduktu.documents}</h4>
