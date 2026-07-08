@@ -13,3 +13,5 @@ admin:
     menu:
         'Katalog':
             plink: ':Catalog:Admin:Catalog:products'
+        'QR kódy':
+            plink: ':Custom:Admin:Qrcode:default'

@@ -59,6 +59,7 @@ services:
 	- App\Catalog\Control\Factory\Products
 	repository.catalog.product: App\Catalog\DB\ProductRepository
 	repository.catalog.category: App\Catalog\DB\CategoryRepository
+	repository.custom.qrcode: App\Custom\DB\QrCodeRepository
 
 storm:
 	default:
