@@ -29,6 +29,12 @@ if (\is_file(__DIR__ . '/config/config.production.neon')) {
     }
 }
 
+// DDEV: trust proxy headers (X-Forwarded-Proto, X-Forwarded-Port)
+if (\getenv('IS_DDEV_PROJECT') === 'true') {
+    $_SERVER['HTTPS'] = 'on';
+    $_SERVER['SERVER_PORT'] = 443;
+}
+
 $container = $configurator->createContainer();
 
 $container->parameters['baseDir'] = \dirname(__FILE__, 2);
