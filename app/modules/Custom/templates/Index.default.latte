@@ -95,7 +95,9 @@
                     <div class="col-md-4 col-sm-6 col-xs-6 youtube-video" n:foreach="$videosFestovani as $videoUrl">
                         <div class="mb-4">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="{$videoUrl}" loading="lazy" allowfullscreen></iframe>
+                                <a href="{$videoUrl}" target="_blank">
+                                    <iframe class="embed-responsive-item" src="{$videoUrl}" loading="lazy" allowfullscreen></iframe>
+                                </a>
                             </div>
                         </div>
                     </div>
