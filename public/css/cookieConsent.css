@@ -1,0 +1,78 @@
+/* Cookie lišta – úpravy vzhledu knihovny vanilla-cookieconsent (načítá se až po jejím CSS). */
+:root {
+	--cc-font-family: "Work Sans", Arial, sans-serif;
+	--cc-btn-primary-bg: rgb(0, 159, 223);
+	--cc-btn-primary-hover-bg: rgb(0, 127, 179);
+	--cc-btn-primary-text: #fff;
+	--cc-toggle-bg-on: rgb(0, 159, 223);
+	--cc-toggle-bg-readonly: #99d9f2;
+}
+
+/* odkazy pod textem lišty (Podrobné nastavení / Více o cookies) */
+#cc--main .cc-add-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .35em 1.5em;
+	margin-top: .9em;
+}
+
+#cc--main .cc-add-links .cc-link {
+	font-size: 1em;
+}
+
+/* křížek pro zavření lišty bez volby */
+#cc--main #cm .cc-close-button {
+	position: absolute;
+	top: .35em;
+	right: .6em;
+	padding: 0 .25em;
+	border: 0;
+	background: none;
+	color: var(--cc-text);
+	font-size: 1.6em;
+	line-height: 1;
+	cursor: pointer;
+	opacity: .6;
+}
+
+#cc--main #cm .cc-close-button:hover {
+	opacity: 1;
+}
+
+/* ID souhlasu v hlavičce podrobného nastavení */
+#cc--main .cc-id-field {
+	margin-top: .3em;
+	font-size: .7em;
+	font-weight: 400;
+	opacity: .6;
+	word-break: break-all;
+}
+
+/* plovoucí tlačítko pro opětovné otevření nastavení */
+#cc-show-settings-button {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 999;
+	padding: .35em .9em;
+	border: 0;
+	border-top-right-radius: .4em;
+	background: #2d4156;
+	color: #fff;
+	font-family: "Work Sans", Arial, sans-serif;
+	font-size: 12px;
+	line-height: 1.5;
+	cursor: pointer;
+	opacity: .85;
+}
+
+#cc-show-settings-button:hover {
+	opacity: 1;
+}
+
+@media print {
+	#cc--main,
+	#cc-show-settings-button {
+		display: none !important;
+	}
+}

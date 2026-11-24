@@ -40,6 +40,7 @@ application:
 routing:
 	routes:
 		'scripts[/<namespace>][/<script>]': 'Tools:Run:default'
+		'cookie-consent': 'Web:CookieConsent:default'
 
 forms:
 	messages: 	
