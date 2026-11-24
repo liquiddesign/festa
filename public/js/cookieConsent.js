@@ -396,7 +396,8 @@
 
 		blockedIframes.forEach(function (blocked) {
 			blocked.iframe.removeAttribute('srcdoc');
-			blocked.iframe.setAttribute('src', blocked.src);
+			// YouTube rovnou přes youtube-nocookie.com, stejně jako po reloadu (blockIframes)
+			blocked.iframe.setAttribute('src', blocked.src.replace('youtube.com', 'youtube-nocookie.com'));
 		});
 		blockedIframes = [];
 	}
