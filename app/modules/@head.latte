@@ -30,8 +30,7 @@
     <script defer id="cookie-consent" src="{$pubUrl}/js/cookieConsent.js?v={$ts}"
         data-log-url="{$baseUrl}/cookie-consent"
         data-lang="{$lang}"
-        data-session-cookie="{$presenter instanceof Nette\Application\UI\Presenter ? $presenter->getSession()->getName() : null}"
-        data-policy-url=""></script>
+        data-session-cookie="{$presenter instanceof Nette\Application\UI\Presenter ? $presenter->getSession()->getName() : null}"></script>
 
     {* GTM běží hned a řídí se Consent Mode (výchozí stav výše). Bez data-cookiecategory – jinak by ho
        cookie lišta po souhlasu spustila podruhé (dvojí page_view). Viz docs/cookie-consent.md. *}

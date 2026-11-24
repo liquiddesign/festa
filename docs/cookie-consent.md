@@ -69,6 +69,6 @@ vrací 500 a lišta funguje dál, jen se volby neevidují.
 
 - **Texty a tabulka cookies:** `TEXTS`, `EXPIRATIONS`, `DESCRIPTIONS`, `COOKIE_TABLE` v `public/js/cookieConsent.js`.
 - **Nový souhlas od všech** (např. přibyla kategorie nebo nástroj): zvýšit `REVISION` tamtéž.
-- **Odkaz „Více o cookies“:** atribut `data-policy-url` v `app/modules/@head.latte`. Zatím prázdný – festa.tools
-  nemá vlastní stránku se zásadami (původní lišta odkazovala na stránku hostovanou u cookies-správně.cz, ta
-  se zrušením licence zmizí). Prázdná hodnota = odkaz se nezobrazí.
+- **Odkaz „Více o cookies“:** lišta ho nemá – festa.tools nemá vlastní stránku se zásadami (původní lišta
+  odkazovala na stránku hostovanou u cookies-správně.cz, ta se zrušením licence zmizí). Kdyby stránka vznikla,
+  stačí přidat atribut `data-policy-url="…"` na `<script id="cookie-consent">` v `app/modules/@head.latte`.
