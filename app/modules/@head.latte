@@ -1,8 +1,41 @@
 <head>
-    <script id='cookies-spravne' src='https://cookies-spravne.cz/static/cc?key=TgxQ2ksUgrC6xf9eXBen' async defer></script>
+    {* Cookie lišta (docs/cookie-consent.md). Výchozí stav Google Consent Mode musí být nastaven dřív než GTM. *}
+    {syntax off}
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        (function () {
+            var denied = { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 };
+            gtag('consent', 'default', denied);
+            try {
+                var match = document.cookie.match(/(?:^|; ?)cc_cookie=([^;]*)/);
+                var level = match ? JSON.parse(match[1]).level : null;
+                if (Array.isArray(level)) {
+                    var state = {
+                        ad_storage: level.indexOf('marketing') > -1 ? 'granted' : 'denied',
+                        analytics_storage: level.indexOf('analytics') > -1 ? 'granted' : 'denied',
+                        ad_user_data: level.indexOf('ad_user_data') > -1 ? 'granted' : 'denied',
+                        ad_personalization: level.indexOf('ad_personalization') > -1 ? 'granted' : 'denied'
+                    };
+                    gtag('consent', 'update', state);
+                    dataLayer.push(Object.assign({ event: 'consentUpdate' }, state));
+                }
+            } catch (e) {}
+        })();
+    </script>
+    {/syntax}
+    <link rel="stylesheet" href="{$pubUrl}/node_modules/vanilla-cookieconsent/dist/cookieconsent.css">
+    <link rel="stylesheet" href="{$pubUrl}/css/cookieConsent.css?v={$ts}">
+    <script defer src="{$pubUrl}/node_modules/vanilla-cookieconsent/dist/cookieconsent.js"></script>
+    <script defer id="cookie-consent" src="{$pubUrl}/js/cookieConsent.js?v={$ts}"
+        data-log-url="{$baseUrl}/cookie-consent"
+        data-lang="{$lang}"
+        data-session-cookie="{$presenter instanceof Nette\Application\UI\Presenter ? $presenter->getSession()->getName() : null}"></script>
 
+    {* GTM běží hned a řídí se Consent Mode (výchozí stav výše). Bez data-cookiecategory – jinak by ho
+       cookie lišta po souhlasu spustila podruhé (dvojí page_view). Viz docs/cookie-consent.md. *}
     <!-- Google Tag Manager -->
-    <script data-cookiecategory="analytics">(function(w,d,s,l,i){ w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>(function(w,d,s,l,i){ w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
