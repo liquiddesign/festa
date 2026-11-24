@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `web_cookie_consent` (
   `consentId` varchar(255) NOT NULL,
   `categories` varchar(255) NOT NULL,
   `revision` int(11) NOT NULL DEFAULT 0,
-  `action` varchar(255) NOT NULL,
+  `action` varchar(16) NOT NULL,
   `createdTs` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`uuid`),
   KEY `web_cookie_consent_consentid` (`consentId`)
