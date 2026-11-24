@@ -1,0 +1,76 @@
+# Dev image festa — Nette 2.4 + lqdlib (Defaultweb3), PHP 7.1 jako v .ddev/config.yaml.
+#
+# PHP 7.1 je schválně: image slouží k vývoji a kontrole změn na dev instanci, ne
+# k modernizaci. Runtime je po konci podpory → image NIKDY nesmí ven z VPN.
+
+# ---------- 1) základ: PHP + Apache ----------
+FROM php:7.1-apache AS base
+
+# Debian buster je archivovaný — bez přesměrování na archive.debian.org vrací apt 404.
+RUN set -eux; \
+    sed -i 's|deb.debian.org|archive.debian.org|g; s|security.debian.org|archive.debian.org|g; /-updates/d' /etc/apt/sources.list; \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/10no-check-valid-until
+
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        git \
+        unzip \
+        libpng-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
+        libzip-dev \
+        libicu-dev; \
+    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
+    docker-php-ext-install -j"$(nproc)" pdo_mysql mysqli gd zip intl bcmath exif opcache; \
+    a2enmod rewrite; \
+    rm -rf /var/lib/apt/lists/*
+
+# Composer 2.2 = LTS větev, která ještě běží na PHP 7.1 (stejně jako v DDEV).
+COPY --from=composer:2.2 /usr/bin/composer /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_NO_INTERACTION=1
+
+# ---------- 2) vendor ----------
+# Samostatná stage kvůli tokenu: COMPOSER_AUTH žije jen tady, finální image si
+# odsud bere jen vendor/, takže se token nedostane ani do jeho prostředí, ani do historie.
+FROM base AS vendor
+
+# lqdlib/* jsou privátní repa na gitlab.com. composer.lock má u nich dist URL
+# z GitLab API, takže stačí token (read_api) — SSH klíč do buildu netřeba:
+#   COMPOSER_AUTH={"gitlab-token":{"gitlab.com":"<token>"}}
+ARG COMPOSER_AUTH=""
+
+WORKDIR /var/www/html
+COPY composer.json composer.lock ./
+# --no-scripts: post-install-cmd pouští interaktivní `installer` a `npm install`
+# (public/node_modules je ve verzování). Dev balíčky zůstávají — composer/composer
+# potřebují skripty v app/Tools (`composer sync-database` apod.).
+RUN composer install --prefer-dist --no-scripts --no-autoloader --no-progress
+COPY app/ ./app/
+RUN composer dump-autoload --optimize
+
+# ---------- 3) aplikace ----------
+FROM base
+
+# vhost místo kořenového .htaccess: ten přesměrovává na https (za Traefikem do
+# kontejneru přijde prosté HTTP → smyčka) a doplňuje www (dev doména žádné www nemá).
+COPY _docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY _docker/zz-overrides.ini /usr/local/etc/php/conf.d/zz-overrides.ini
+COPY _docker/prepend.php /usr/local/etc/php/prepend.php
+COPY _docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Kód jde DO image, ne přes bind mount: Coolify staví z gitu, takže se dev/test/PR
+# instance liší jen tím, z jaké větve se image postavil. Co nepatří, řeší .dockerignore.
+WORKDIR /var/www/html
+COPY . /var/www/html
+COPY --from=vendor /var/www/html/vendor /var/www/html/vendor
+
+# Apache poslouchá na 0.0.0.0:80 (výchozí `Listen 80`) — na 127.0.0.1 by na něj
+# Traefik z vlastního kontejneru nedosáhl.
+EXPOSE 80
+
+# entrypoint.sh založí config.local.neon z env a zapisovatelné temp/ a userfiles/;
+# končí `exec apache2-foreground`.
+ENTRYPOINT ["entrypoint.sh"]
