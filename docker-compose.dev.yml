@@ -1,0 +1,107 @@
+# Dev stack festa pro sdílený server (ide1) — nasazuje ho Coolify z gitu.
+#
+# Na stroji běží vedle sebe víc instancí téhož projektu (dev, test, PR) i cizí appky,
+# proto je psaný jinak než lokální DDEV:
+#   - žádný `container_name` — jména generuje Compose z názvu projektu, jinak by druhá
+#     instance skončila na „container name is already in use"
+#   - žádné publikované `ports` — 80/443 drží Traefik a 3306 by zabrala jen první DB;
+#     dovnitř se chodí přes doménu instance
+#   - žádný label `traefik.http.services.*` (viz komentář u labels níže)
+#   - podpůrné služby mají prefix projektu (`festa-db`) a jsou jen v síti `default`
+#
+# Databáze se rodí prázdná. Data se nalévají mimo compose (`instance_db_import`),
+# aby redeploy nikdy nepřepsal rozdělanou práci na dev DB.
+#
+# Build potřebuje proměnnou COMPOSER_AUTH s tokenem do GitLabu — balíčky lqdlib/*
+# jsou v privátních repech gitlab.com/lqdlib (viz Dockerfile.dev).
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        # {"gitlab-token":{"gitlab.com":"<token s read_api>"}} — nastav v Coolify jako
+        # build-time proměnnou. Do výsledného image se nedostane (jen do stage `vendor`).
+        COMPOSER_AUTH: ${COMPOSER_AUTH:-}
+    environment:
+      # Z těchhle hodnot entrypoint skládá app/config/config.local.neon (ve verzování
+      # není, lokálně ho zakládá `composer installer`).
+      DB_HOST: festa-db
+      DB_NAME: festa
+      DB_USER: root
+      DB_PASSWORD: ""
+      # 1 = Nette v debug módu (Tracy, catchExceptions: false). Instance je jen na VPN.
+      APP_DEBUG: ${APP_DEBUG:-1}
+    volumes:
+      # Nahrané soubory musí přežít redeploy. temp/ (DI kontejner, cache, sessions,
+      # Tracy logy) je záměrně BEZ volume — každý nový kontejner startuje s čistou
+      # cache, takže se po deployi nemůže servírovat stará.
+      - userfiles:/var/www/html/userfiles
+    depends_on:
+      festa-db:
+        condition: service_healthy
+    restart: unless-stopped
+    # Port aplikace — Apache poslouchá na 0.0.0.0:80. Coolify z něj bere port pro Traefik.
+    expose:
+      - "80"
+    networks:
+      # `default` si Compose vytvoří pod názvem projektu (nekoliduje s jinou instancí),
+      # `coolify` je síť Traefiku — bez ní na kontejner nedosáhne.
+      - default
+      - coolify
+    healthcheck:
+      # Statický soubor, ne front controller: appka bez naimportované DB vrací chybu
+      # a instance by kvůli tomu vypadala rozbitá, i když Apache jede.
+      test: ["CMD-SHELL", "php -r 'exit(@file_get_contents(\"http://127.0.0.1/favicon.ico\")===false?1:0);'"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    # Routery i službu generuje Coolify z přiřazené domény (s uuid aplikace), port
+    # bere z `expose`.
+    #
+    # ⚠️ Vlastní `traefik.http.services.<jmeno>...` tu SCHVÁLNĚ není. Jméno služby je
+    # v Traefiku globální: dvě instance téhož projektu s týmž jménem se slijí do JEDNÉ
+    # služby se dvěma servery a Traefik mezi nimi load-balancuje — požadavky pak
+    # střídavě padají na cizí instanci. Odlišit jméno přes `${INSTANCE}` nejde: Coolify
+    # v labelech escapuje `$` na `$$`, takže se proměnná nikdy nerozvine.
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=coolify"
+
+  # Jméno služby je ve sdílené docker síti zároveň síťový alias — obecné „db" drží
+  # cizí databáze, proto prefix projektu a jen síť `default`.
+  festa-db:
+    image: mariadb:11.8
+    # Stejná verze jako v .ddev/config.yaml; kolace podle `storm.default` v config.neon.
+    command: >-
+      --character-set-server=utf8mb3
+      --collation-server=utf8mb3_czech_ci
+    environment:
+      # Prázdné heslo pro root schválně: DB není publikovaná ven, dosáhne na ni jen
+      # síť `default` tohohle stacku na VPN stroji.
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "yes"
+      MARIADB_ROOT_HOST: "%"
+      MARIADB_DATABASE: festa
+      TZ: Europe/Prague
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    restart: unless-stopped
+
+networks:
+  # Předpřipravená síť Coolify proxy; `default` se nedeklaruje schválně, aby si ji
+  # Compose pojmenoval podle projektu a instance si navzájem nekolidovaly.
+  coolify:
+    external: true
+
+volumes:
+  dbdata:
+  userfiles:

@@ -1,0 +1,9 @@
+.git
+.gitignore
+.idea
+.ddev
+vendor
+temp
+userfiles
+app/config/config.local.neon
+*:Zone.Identifier
